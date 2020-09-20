@@ -3,13 +3,13 @@
 #include <string> // Library for string functions.
 using namespace std; // Set namespace.
 
-static string version = "dev build 1";
+static string version = "dev 2";
 string raw;
 char selection;
 long double a, b, c;
 
 int main() {
-	cout << "Calculator version: " << version << endl; // Print version info.
+	cout << "Calculator build: " << version << endl; // Print version info.
 	start: // Start of loop.
 	cout << "Enter operator {+,-,*,/} or q to quit:"; // Prompt for operator input.
 	cin >> raw;
