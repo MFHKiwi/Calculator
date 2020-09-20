@@ -1,7 +1,7 @@
-#include <iostream>
-#include <cstring>
-#include <string>
-using namespace std;
+#include <iostream> // Library for I/O.
+#include <cstring> // Library for c_str function.
+#include <string> // Library for string functions.
+using namespace std; // Set namespace.
 
 static string version = "dev build 1";
 string raw;
