@@ -37,7 +37,7 @@ int main() {
 	} else {
 		b = atof(raw.c_str()); // Otherwise, store input.
 	}
-	if (selection == '+') {
+	if (selection == '+') { // Determine operation to run.
 		c = a + b;
 	} else if (selection == '-') {
 		c = a - b;
@@ -46,6 +46,6 @@ int main() {
 	} else if (selection == '/') {
 		c = a / b;
 	}
-	cout << "====================\n" << a << selection << b << "=" << c << "\n====================\n";
-	goto start;
+	cout << "====================\n" << a << selection << b << "=" << c << "\n====================\n"; // Print output.
+	goto start; // Restart loop.
 }
