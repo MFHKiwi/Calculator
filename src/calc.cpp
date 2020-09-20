@@ -46,6 +46,6 @@ int main() {
 	} else if (selection == '/') {
 		c = a / b;
 	}
-	cout << "====================\n" << a << selection << b << "=" << c << "\n====================\n"; // Print output.
+	cout << "========================================\n" << a << selection << b << "=" << c << "\n========================================\n"; // Print output.
 	goto start; // Restart loop.
 }
