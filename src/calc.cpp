@@ -1,51 +1,50 @@
 #include <iostream> // Library for I/O.
-#include <cstring> // Library for c_str function.
 #include <string> // Library for string functions.
 using namespace std; // Set namespace.
 
-static string version = "1.0";
-string raw;
-char selection;
-long double a, b, c;
+#define VERSION "1.0.1"
 
 int main() {
-	cout << "Calculator version: " << version << endl; // Print version info.
-	start: // Start of loop.
-	cout << "Enter operator {+,-,*,/} or q to quit:"; // Prompt for operator input.
-	cin >> raw;
-	if (raw.find_first_not_of("+-*/q") != string::npos) { // Validate operator input.
-		cout << "Invalid.\n"; // Invalid? Go to start.
-		goto start;
-	} else if (raw == "q") { // If 'q' is given, exit with code 0.
-		return 0;
-	} else {
-		selection = raw.at(0);
-	}
-	cout << "Enter number to operate on: "; // Prompt for number input.
-	cin >> raw;
-	if (raw.find_first_not_of("1234567890.-") != string::npos) { // Validate input
-		cout << "Invalid.\n"; // Invalid? Go to start.
-		goto start;
-	} else {
-		a = atof(raw.c_str()); // Otherwise, store input.
-	}
-	cout << "Enter number to operate on: ";
-	cin >> raw;
-	if (raw.find_first_not_of("1234567890.-") != string::npos) { // Validate input
-		cout << "Invalid.\n"; // Invalid? Go to start.
-		goto start;
-	} else {
-		b = atof(raw.c_str()); // Otherwise, store input.
-	}
-	if (selection == '+') { // Determine operation to run.
-		c = a + b;
-	} else if (selection == '-') {
-		c = a - b;
-	} else if (selection == '*') {
-		c = a * b;
-	} else if (selection == '/') {
-		c = a / b;
-	}
-	cout << "========================================\n" << a << selection << b << "=" << c << "\n========================================\n"; // Print output.
-	goto start; // Restart loop.
+	string raw;
+	char selection;
+	long double a, b, c;
+	do {
+		cout << "Calculator version: " << VERSION << endl; // Print version info.
+		cout << "Enter operator {+,-,*,/} or q to quit:"; // Prompt for operator input.
+		getline(cin, raw);
+		if (raw.find_first_not_of("+-*/q") != string::npos) { // Validate operator input.
+			cout << "Invalid.\n"; // Invalid? Go to start.
+			continue;
+		} else if (raw == "q") { // If 'q' is given, exit with code 0.
+			return 0;
+		} else {
+			selection = raw[0];
+		}
+		cout << "Enter number to operate on: "; // Prompt for number input.
+		getline(cin, raw);
+		try {
+			a = stof(raw);
+		} catch (invalid_argument&) {
+			cout << "Invalid.\n"; // Invalid? Go to start.
+			continue;
+		}
+		cout << "Enter number to operate on: ";
+		getline(cin, raw);
+		try {
+			b = stof(raw);
+		} catch (invalid_argument&) {
+			cout << "Invalid.\n"; // Invalid? Go to start.
+			continue;
+		}
+		if (selection == '+') { // Determine operation to run.
+			c = a + b;
+		} else if (selection == '-') {
+			c = a - b;
+		} else if (selection == '*') {
+			c = a * b;
+		} else if (selection == '/') {
+			c = a / b;
+		}
+		cout << "========================================\n" << a << selection << b << "=" << c << "\n========================================\n"; // Print output.
+	} while (true);
 }
