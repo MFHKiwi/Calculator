@@ -22,18 +22,18 @@ int main() {
 		}
 		cout << "Enter number to operate on: "; // Prompt for number input.
 		getline(cin, raw);
-		try {
+		try { // Test for invalid_argument.
 			a = stof(raw);
 		} catch (invalid_argument&) {
-			cout << "Invalid.\n"; // Invalid? Go to start.
+			cout << "Invalid.\n"; // invalid_argument? Go to start.
 			continue;
 		}
 		cout << "Enter number to operate on: ";
 		getline(cin, raw);
-		try {
+		try { // Test for invalid_argument.
 			b = stof(raw);
 		} catch (invalid_argument&) {
-			cout << "Invalid.\n"; // Invalid? Go to start.
+			cout << "Invalid.\n"; // invalid_argument? Go to start.
 			continue;
 		}
 		if (selection == '+') { // Determine operation to run.
