@@ -3,7 +3,7 @@
 #include <cmath> // Library for extended math functions.
 using namespace std;
 
-#define VERSION "1.2.0"
+#define VERSION "1.3.0"
 const char *manual =
 		" + => Addition\n"
 		" - => Subtraction\n"
@@ -12,10 +12,30 @@ const char *manual =
 		" ^ => Exponentiate by <>\n"
 		"r2 => Square root of <>\n"
 		"r3 => Cubic root of <>\n"
+		" h => Hypotenuse\n"
 		" q => Quit\n"
 		" m => This page\n";
 string raw;
 long double a, b, c;
+
+string hypotenuse() {
+	cout << "Enter angle 1 of triangle: "; // Prompt for input of number.
+	getline(cin, raw);
+	try { // Test for invalid_argument.
+		a = stold(raw);
+	} catch (invalid_argument&) {
+		return "Invalid."; // invalid_argument exception? Return "Invalid".
+	}
+	cout << "Enter angle 2 of triangle: "; // Prompt for input of number.
+	getline(cin, raw);
+	try { // Test for invalid_argument.
+		b = stold(raw);
+	} catch (invalid_argument&) {
+		return "Invalid."; // invalid_argument exception? Return "Invalid".
+	}
+	c = hypotl(a, b); // Calculate hypotenuse.
+	return to_string(c); // Return c.
+}
 
 string root(bool cube) {
 	if (cube == true) { // Cube or not?
@@ -89,7 +109,8 @@ int main() {
 		cout << "Calculator version: " << VERSION << endl; // Print version info.
 		cout << "Enter operator to use (m for manual, q for quit): "; // Prompt for operator input.
 		getline(cin, raw);
-		if (raw.find_first_not_of("+-*/^qr23m") != string::npos) { // Validate operator input.
+		/* I will hopefully find a way to optimise this. */
+		if (raw.find_first_not_of("+-*/^qr23mh") != string::npos) { // Validate operator input.
 			cout << "Invalid.\n"; // Invalid? Go to start.
 			continue;
 		} else if (raw.empty()){
@@ -100,13 +121,15 @@ int main() {
 			out = root(false) + "\n";
 		} else if (raw == "r3") { // If 'r3' is given, call cubic root function.
 			out = root(true) + "\n";
-		} else if (raw == "m") { // If 'm' is given, call manual.
+		} else if (raw == "m") { // If 'm' is given, print manual.
 			out = manual;
+		} else if (raw == "h") { // If 'h' is given, call hypotenuse function.
+			out = hypotenuse() + "\n";
 		} else if (raw == "q") { // If 'q' is given, exit with code 0.
 			return 0;
 		} else if (raw == "+" || "-" || "*" || "/") { // Otherwise, call basic math function.
 			out = basicMath(raw[0]) + "\n";
 		}
 		cout << endl << out << endl;
-	} while (true);
+	} while (true); // Endless loop.
 }
