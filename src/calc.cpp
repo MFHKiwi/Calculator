@@ -18,8 +18,8 @@ string raw;
 long double a, b, c;
 
 string root(bool cube) {
-	if (cube == true) {
-		cout << "Enter value to get the cube root of: ";
+	if (cube == true) { // Cube or not?
+		cout << "Enter value to get the cube root of: "; // Prompt for input of number.
 		getline(cin, raw);
 		try { // Test for invalid_argument.
 			a = stold(raw);
@@ -28,7 +28,7 @@ string root(bool cube) {
 		}
 		c = cbrt(a); // Get cubic root of a.
 	} else {
-		cout << "Enter value to get the square root of: ";
+		cout << "Enter value to get the square root of: "; // Prompt for input of number.
 		getline(cin, raw);
 		try { // Test for invalid_argument.
 			a = stold(raw);
@@ -37,7 +37,7 @@ string root(bool cube) {
 		}
 		c = sqrt(a); // Get square root of a.
 	}
-	return to_string(c);
+	return to_string(c); // Return c.
 }
 
 string exponent() {
@@ -56,7 +56,7 @@ string exponent() {
 		return "Invalid."; // invalid_argument exception? Return "Invalid".
 	}
 	c = powl(a, b); // Raise a to the power of b.
-	return to_string(c);
+	return to_string(c); // Return c.
 }
 
 string basicMath(char selection) {
@@ -80,7 +80,7 @@ string basicMath(char selection) {
 		case '*': c = a * b; break;
 		case '/': c = a / b; break;
 	}
-	return to_string(c);
+	return to_string(c); // Return c.
 }
 
 int main() {
